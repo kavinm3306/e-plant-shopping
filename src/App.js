@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import "./App.css";
+import AboutUs from "./components/AboutUs";
+import ProductList from "./components/ProductList";
+import CartItem from "./components/CartItem";
+
+function LandingPage() {
+  return (
+    <div className="landing">
+      <h1>Paradise Nursery</h1>
+      <p>Bring Nature Closer To You 🌱</p>
+
+      <Link to="/plants">
+        <button>Get Started</button>
+      </Link>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/plants" element={<ProductList />} />
+        <Route path="/cart" element={<CartItem />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
