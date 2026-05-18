@@ -105,12 +105,34 @@ function ProductList() {
                       <p>${plant.price}</p>
 
                       <button
-                        onClick={() =>
-                          dispatch(addItem(plant))
-                        }
-                      >
-                        Add To Cart
-                      </button>
+
+  disabled={
+    cart.some(
+      (item) => item.id === plant.id
+    )
+  }
+
+  onClick={() =>
+    dispatch(addItem(plant))
+  }
+
+>
+
+  {
+    cart.some(
+      (item) => item.id === plant.id
+    )
+
+    ?
+
+    "Added to Cart"
+
+    :
+
+    "Add To Cart"
+  }
+
+</button>
 
                     </div>
 

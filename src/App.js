@@ -6,16 +6,27 @@ import ProductList from "./components/ProductList";
 import CartItem from "./components/CartItem";
 
 function LandingPage() {
+
+  const handleGetStartedClick = () => {
+    window.location.href = "/plants";
+  };
+
   return (
+
     <div className="landing">
+
       <h1>Paradise Nursery</h1>
+
       <p>Bring Nature Closer To You 🌱</p>
 
-      <Link to="/plants">
-        <button>Get Started</button>
-      </Link>
+      <button onClick={handleGetStartedClick}>
+        Get Started
+      </button>
+
     </div>
+
   );
+
 }
 
 function App() {
