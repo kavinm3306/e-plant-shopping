@@ -107,7 +107,7 @@ function ProductList() {
                       <button
 
   disabled={
-    cart.some(
+    cart.find(
       (item) => item.id === plant.id
     )
   }
@@ -119,7 +119,8 @@ function ProductList() {
 >
 
   {
-    cart.some(
+
+    cart.find(
       (item) => item.id === plant.id
     )
 
@@ -129,7 +130,8 @@ function ProductList() {
 
     :
 
-    "Add To Cart"
+    "Add to Cart"
+
   }
 
 </button>

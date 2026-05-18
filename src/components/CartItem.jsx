@@ -7,8 +7,7 @@ import {
 
 import {
   removeItem,
-  incrementQuantity,
-  decrementQuantity
+  updateQuantity
 } from "../redux/CartSlice";
 
 import { Link } from "react-router-dom";
@@ -22,23 +21,44 @@ function CartItem() {
   const dispatch = useDispatch();
 
   const total = cart.reduce(
+
     (sum, item) =>
-      sum + item.price * item.quantity,
+
+      sum +
+      item.price * item.quantity,
+
     0
+
   );
 
   return (
 
     <div>
 
+      <div className="navbar">
+
+        <Link to="/">Home</Link>
+
+        <Link to="/about">About</Link>
+
+        <Link to="/plants">
+          Products
+        </Link>
+
+      </div>
+
       <h1>Shopping Cart</h1>
 
       <h2>Total: ${total}</h2>
 
       {
+
         cart.map((item) => (
 
-          <div key={item.id} className="card">
+          <div
+            className="card"
+            key={item.id}
+          >
 
             <img
               src={item.image}
@@ -50,49 +70,93 @@ function CartItem() {
 
             <p>${item.price}</p>
 
-            <p>Quantity: {item.quantity}</p>
+            <p>
+              Quantity:
+              {item.quantity}
+            </p>
 
             <button
+
               onClick={() =>
+
                 dispatch(
-                  incrementQuantity(item.id)
+
+                  updateQuantity({
+
+                    id: item.id,
+                    amount: 1
+
+                  })
+
                 )
+
               }
+
             >
+
               +
+
             </button>
 
             <button
+
               onClick={() =>
+
                 dispatch(
-                  decrementQuantity(item.id)
+
+                  updateQuantity({
+
+                    id: item.id,
+                    amount: -1
+
+                  })
+
                 )
+
               }
+
             >
+
               -
+
             </button>
 
             <button
+
               onClick={() =>
-                dispatch(removeItem(item.id))
+
+                dispatch(
+                  removeItem(item.id)
+                )
+
               }
+
             >
+
               Delete
+
             </button>
 
           </div>
 
         ))
+
       }
 
       <br />
 
-      <button>Checkout</button>
+      <button>
+        Checkout
+      </button>
 
       <br /><br />
 
       <Link to="/plants">
-        <button>Continue Shopping</button>
+
+        <button>
+          Continue Shopping
+        </button>
+
       </Link>
 
     </div>
